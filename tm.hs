@@ -13,6 +13,7 @@ instance Show Symbol where
     show Null  = "_"
     show Start = "->"
 
+-- 'left' is a stack. This makes constant time shifts on the tape possible.
 data Tape = Tape { left :: [Symbol]
                  , current :: Symbol
                  , right :: [Symbol]
@@ -24,7 +25,7 @@ instance Show Tape where
 data Move = S | L | R deriving (Show, Eq)
 
 -- The core data type representing a Turing Machine (current state, tape and transition function)
-
+-- MemMachine includes a memory tape aside the basic tape.
 data Machine = 
     Machine { 
         state :: State,
